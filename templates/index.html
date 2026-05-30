@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Plagiarism Detection - PDS{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3 class="mb-2">Compare Documents</h3>
+                <p class="lead mb-2">Upload or paste two documents to check for similarity</p>
+                <p class="text-muted">Supports TXT, PDF, DOCX, and image files (JPG, PNG, BMP, TIFF)</p>
+            </div>
+
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Document 1</h5>
+                            <div class="mb-3">
+                                <label class="form-label" for="file1">Upload File</label>
+                                <input type="file" class="form-control" id="file1" name="file1" accept=".txt,.pdf,.docx,.jpg,.jpeg,.png,.bmp,.tiff">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="text1">Or Paste Text</label>
+                                <textarea class="form-control" id="text1" name="text1" rows="8" placeholder="Enter or paste text for document 1..."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Document 2</h5>
+                            <div class="mb-3">
+                                <label class="form-label" for="file2">Upload File</label>
+                                <input type="file" class="form-control" id="file2" name="file2" accept=".txt,.pdf,.docx,.jpg,.jpeg,.png,.bmp,.tiff">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="text2">Or Paste Text</label>
+                                <textarea class="form-control" id="text2" name="text2" rows="8" placeholder="Enter or paste text for document 2..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary w-100 btn-lg">Detect Plagiarism</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

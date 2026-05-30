@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">Plagiarism Detection System</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/register">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="landing-hero text-center">
+            <h1>Detect Plagiarism with Confidence</h1>
+            <p class="lead">Compare documents using multiple algorithms including KMP, Rabin-Karp, LCS, and Cosine Similarity. Upload files or paste text to get detailed similarity reports with highlighted matches.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5>Upload &amp; Compare</h5>
+                    <p>Supports TXT, PDF, DOCX, and image files. Simply upload two documents or paste text directly.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5>Multi-Algorithm Detection</h5>
+                    <p>Uses string matching and vector-based methods to accurately detect similarity between documents.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <h5>Detailed Reports</h5>
+                    <p>Get clear scores, risk assessments, and highlighted matching content for easy review.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-5">
+            <a href="/login" class="btn btn-primary btn-lg me-3">Get Started</a>
+            <a href="/register" class="btn btn-outline-primary btn-lg">Create Account</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="footer-text text-center">
+            &copy; 2024 Plagiarism Detection System &middot; Built with Flask and Python
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

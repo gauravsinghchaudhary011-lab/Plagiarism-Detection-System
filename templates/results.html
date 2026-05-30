@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Results - PDS{% endblock %}
+{% block content %}
+<h2 class="text-center mb-4">Scan Results</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">Similarity Scores</h4>
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <tr>
+                        <td>KMP Matches</td>
+                        <td class="text-end"><strong>{{ result.kmp_matches }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Rabin-Karp Matches</td>
+                        <td class="text-end"><strong>{{ result.rabin_karp_matches }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>LCS Similarity</td>
+                        <td class="text-end">
+                            <span class="{% if result.lcs_similarity > 70 %}plagiarism-score-high{% elif result.lcs_similarity > 30 %}plagiarism-score-medium{% else %}plagiarism-score-low{% endif %}">
+                                {{ "%.2f"|format(result.lcs_similarity) }}%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cosine Similarity</td>
+                        <td class="text-end">
+                            <span class="{% if result.cosine_similarity > 70 %}plagiarism-score-high{% elif result.cosine_similarity > 30 %}plagiarism-score-medium{% else %}plagiarism-score-low{% endif %}">
+                                {{ "%.2f"|format(result.cosine_similarity) }}%
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Similarity</strong></td>
+                        <td class="text-end">
+                            <span class="{% if result.overall_similarity > 70 %}plagiarism-score-high{% elif result.overall_similarity > 30 %}plagiarism-score-medium{% else %}plagiarism-score-low{% endif %}">
+                                <strong>{{ "%.2f"|format(result.overall_similarity) }}%</strong>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="mb-0">Plagiarism Risk</h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="{% if result.overall_similarity > 70 %}risk-high{% elif result.overall_similarity > 30 %}risk-medium{% else %}risk-low{% endif %} risk-indicator">
+                    <span class="risk-dot"></span>
+                    {% if result.overall_similarity > 70 %}High Risk{% elif result.overall_similarity > 30 %}Medium Risk{% else %}Low Risk{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-secondary w-100">New Check</a>
+    </div>
+
+    <div class="col-md-7">
+        <h4 class="mb-3">Matched Content</h4>
+        <div class="highlights-container">
+            {% if result.highlights %}
+                {% for h in result.highlights %}
+                <div class="highlight">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <small class="text-muted">Match #{{ loop.index }} &middot; {{ h.size }} characters</small>
+                        <span class="badge bg-success">{{ "%.1f"|format((h.size / query_text|length * 100)) }}% overlap</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0">
+                            <strong>From Document 1</strong>
+                            <div class="bg-light rounded mt-2">
+                                {{ h.matching_text[:200] }}{% if h.matching_text|length > 200 %}...{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>From Document 2</strong>
+                            <div class="bg-light rounded mt-2">
+                                {{ doc_text[h.doc_start:h.doc_end][:200] }}{% if (doc_text[h.doc_start:h.doc_end]|length > 200) %}...{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-4">
+                    <p class="text-muted mb-0">No significant matches found.</p>
+                </div>
+            {% endif %}
+        </div>
+        {% if result.highlights %}
+        <small class="text-muted mt-2 d-block">Showing {{ result.highlights|length }} match{{ 'es' if result.highlights|length > 1 else '' }}</small>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
