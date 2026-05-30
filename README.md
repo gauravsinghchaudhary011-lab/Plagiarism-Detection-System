@@ -7,23 +7,6 @@
 - **Modern attractive UI** - Gradient themes, smooth animations, responsive design
 - **Instant results** - Highlighted matches, scores, visualizations
 
-## 📦 Quick Start (Windows)
-
-```bash
-cd d:/plagiarism-detection-system
-python -m venv .venv
-.venv/Scripts/activate
-pip install -r requirements.txt
-python app.py
-```
-
-**Open**: http://localhost:5000
-
-## 🛠️ OCR Image Support (Optional)
-For image text extraction:
-1. Download Tesseract: https://github.com/UB-Mannheim/tesseract/wiki
-2. Install & add to PATH
-3. Restart terminal/VSCode
 
 ## 🔧 File Structure
 ```
@@ -44,17 +27,6 @@ For image text extraction:
 - **KMP / Rabin-Karp**: Exact substring matches
 - **LCS**: Sequence similarity
 - **Cosine Similarity**: Semantic via TF-IDF vectors
-
-## 🎨 UI Credits
-- Inter & Poppins fonts (Google Fonts)
-- Modern glassmorphism design
-- Purple-blue gradient theme
-
-## 🐛 Troubleshooting
-- **Secret key error**: Fixed in app.py
-- **Numpy import**: `pip install numpy`
-- **No OCR**: Images show as unsupported (install Tesseract)
-- **Port busy**: `python app.py --port=5001`
 
 ## 📈 Future Enhancements
 - PDF report export
